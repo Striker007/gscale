@@ -1,0 +1,8 @@
+.idea
+env
+*.pyc
+createinstans.log
+dist
+logs/*
+build
+Fabric.egg-info

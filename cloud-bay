@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+if [ ! -d ./logs ]; then
+    mkdir ./logs && chmod -R a+w ./logs;
+fi
+env/bin/python cloud_bay/main.py

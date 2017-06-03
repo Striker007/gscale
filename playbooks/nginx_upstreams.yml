@@ -1,0 +1,37 @@
+---
+- name: iptables allow aws
+  hosts: pr1oxy
+  sudo: True
+  gather_facts: False
+  vars:
+    ip: "192.168.0.2"
+    file1: "/etc/nginx/include/upstream"
+  tasks:
+
+    - name: add upstream
+      lineinfile:
+        path: "{{ file1 }}"
+        line: "{{ ip }}"
+        state: present
+      tags: ['add']
+    - name: show upstrams
+      shell: cat {{ file1 }}
+      ignore_errors: True
+      register: someoutput
+      tags: ['add']
+    - debug: var=someoutput.stdout_lines
+      tags: ['add']
+
+    - name: del upstream
+      lineinfile:
+        path: "{{ file1 }}"
+        line: "{{ ip }}"
+        state: absent
+      tags: ['del']
+    - name: show upstrams
+      shell: cat {{ file1 }}
+      ignore_errors: True
+      register: someoutput
+      tags: ['del']
+    - debug: var=someoutput.stdout_lines
+      tags: ['del']

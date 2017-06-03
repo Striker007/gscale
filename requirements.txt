@@ -1,0 +1,4 @@
+Fabric
+boto
+click
+pyaml
